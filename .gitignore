@@ -1,0 +1,5 @@
+# Ignore my .env file
+backend/config/config.env
+# Ignore my node_modules
+backend/node_modules
+frontend/node_modules
