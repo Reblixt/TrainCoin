@@ -5,9 +5,9 @@
 ### For the backend part.
 
 1. Proof of Work
-2. Block model
-3. Wallet model
-4. Blockchain model
+2. Block model // done
+3. Wallet model // done
+4. Blockchain model // done
 5. Transaction model
 6. TransactionPool model
 7. Connect to peers thru Redis server.
