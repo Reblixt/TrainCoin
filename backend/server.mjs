@@ -6,9 +6,17 @@ import blockchainRouter from "./routes/blockchain-routes.mjs";
 import blockRouter from "./routes/block-routes.mjs";
 import { synchronize } from "./services/nodeServices.mjs";
 import { endpoint } from "./config/settings.mjs";
+import RedisServer from "./redisServer.mjs";
+import TransactionPool from "./models/TransactionPool.mjs";
 
 export const blockchain = new Blockchain();
+export const transactionPool = new TransactionPool();
 export const wallet = new Wallet();
+export const redisServer = new RedisServer({
+  blockchain,
+  transactionPool,
+  wallet,
+});
 
 const app = express();
 app.use(express.json());
@@ -18,9 +26,9 @@ const ROOT_NODE = `http://localhost:${DEFAULT_PORT}`;
 
 let NODE_PORT;
 
-// setTimeout(() => {
-//   redisServer.broadcast();
-// }, 1000)
+setTimeout(() => {
+  redisServer.broadcast();
+}, 1000);
 
 app.use(endpoint.wallet.base, walletRouter);
 app.use(endpoint.blockchain, blockchainRouter);

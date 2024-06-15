@@ -4,11 +4,11 @@
 
 ### For the backend part.
 
-1. Proof of Work
+1. Proof of Work // done
 2. Block model // done
 3. Wallet model // done
 4. Blockchain model // done
-5. Transaction model
+5. Transaction model // done
 6. TransactionPool model
 7. Connect to peers thru Redis server.
 8. Block mining rewards

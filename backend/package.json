@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@vitest/ui": "^1.6.0",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.3",
     "vitest": "^1.6.0"
   },
@@ -20,7 +21,9 @@
   "scripts": {
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "dev": "nodemon --env-file=./config/config.env server.mjs"
+    "dev": " npm run start-redis && nodemon --env-file=./config/config.env server.mjs",
+    "dev-node": "cross-env GENERATE_NODE_PORT='true' --env-file=./config/config.env nodemon server.mjs",
+    "start-redis": "redis-server --daemonize yes"
   },
   "author": "Carl Klöfverskjöld",
   "license": "MIT",
