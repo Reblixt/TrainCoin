@@ -1,4 +1,5 @@
 import Block from "./Block.mjs";
+import Transaction from "./Transaction.mjs";
 
 export default class Blockchain {
   constructor() {
@@ -16,7 +17,7 @@ export default class Blockchain {
       console.error("The incoming chain must be longer");
       return;
     }
-    if (!Blockchain.validationChain(chain)) return;
+    if (!Blockchain.validateChain(chain)) return;
     if (shouldValidate && !Blockchain.isValidChain(chain)) {
       console.error("The incoming chain must be valid");
       return;

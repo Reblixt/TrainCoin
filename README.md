@@ -33,3 +33,7 @@
 1. TDD for the transactionhandling.
 2. Clean code, SOC, MVC.
 3. Protected from DDOS attacks, NoSql injections and XSS attempt.
+
+// wallet will handle login, logout, authicaiton and registration, create transaction, get balance, get public key
+// block will handle mine block and only get called by after a number of transactions
+// blockchain will handle get blockchain, get block by hash, get block by blocknumber

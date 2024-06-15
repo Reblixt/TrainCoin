@@ -1,5 +1,5 @@
 import hexToBinary from "hex-to-binary";
-import { GENESIS_DATA } from "../config/settings.mjs";
+import { GENESIS_DATA, MINE_RATE } from "../config/settings.mjs";
 import { createHash } from "../utilities/crypto-lib.mjs";
 
 export default class Block {

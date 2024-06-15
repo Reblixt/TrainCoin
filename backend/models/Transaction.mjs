@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { verifySignature } from "../utilities/crypto-lib.mjs";
+import { MINING_REWARD, REWARD_ADDRESS } from "../config/settings.mjs";
 
 export default class Transaction {
   constructor({ sender, recipient, amount, inputMap, outputMap }) {
@@ -25,6 +26,13 @@ export default class Transaction {
       return false;
 
     return true;
+  }
+
+  static transactionReward({ minerWallet }) {
+    return new this({
+      inputMap: REWARD_ADDRESS,
+      outputMap: { [minerWallet.publicKey]: MINING_REWARD },
+    });
   }
 
   update({ sender, recipient, amount }) {
