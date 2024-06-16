@@ -1,4 +1,3 @@
-import { redisServer } from "../server.mjs";
 import { createHash } from "../utilities/crypto-lib.mjs";
 import Block from "./Block.mjs";
 import Transaction from "./Transaction.mjs";
@@ -23,7 +22,7 @@ export default class Blockchain {
     if (shouldValidate && !this.validateTransactionData({ chain })) return;
 
     if (callBack) callBack();
-    this.chain = chain;
+    this.chain = chain.chain;
   }
 
   validateTransactionData({ chain }) {
@@ -32,6 +31,8 @@ export default class Blockchain {
       const transactionSet = new Set();
       let counter = 0;
 
+      console.log("block.data", block.data);
+      if ((block.data = {})) return false;
       for (let transaction of block.data) {
         if (transaction.inputMap.address === REWARD_ADDRESS.address) {
           counter++;
@@ -57,8 +58,9 @@ export default class Blockchain {
     return true;
   }
 
-  static validateChain({ chain }) {
-    if (JSON.stringify(chain.at(0)) !== JSON.stringify(Block.genesis))
+  static validateChain(chain) {
+    console.log("validatechain", chain);
+    if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis))
       return false;
 
     for (let i = 1; i < chain.length; i++) {

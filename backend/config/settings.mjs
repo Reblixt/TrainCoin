@@ -12,12 +12,6 @@ export const INITIAL_BALANCE = 1000;
 export const REWARD_ADDRESS = { address: "reward-address" };
 export const MINING_REWARD = 50;
 
-// export const endpoint = {
-//   wallet: "/api/v1/wallet",
-//   block: "/api/v1/block",
-//   blockchain: "/api/v1/blockchain",
-// };
-
 const createEndpoint = (base, paths = {}) => {
   const endpoint = new Proxy(paths, {
     get(target, prop) {
