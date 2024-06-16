@@ -44,6 +44,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 
   if (PORT !== DEFAULT_PORT) {
-    synchronize(ROOT_NODE); // With await?
+    synchronize(ROOT_NODE);
   }
 });

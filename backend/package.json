@@ -3,7 +3,7 @@
     "elliptic": "^6.5.5",
     "express": "^4.19.2",
     "hex-to-binary": "^1.0.1",
-    "redis": "^4.6.14",
+    "redis": "^2.8.0",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
@@ -22,7 +22,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "dev": " npm run start-redis && nodemon --env-file=./config/config.env server.mjs",
-    "dev-node": "cross-env GENERATE_NODE_PORT='true' --env-file=./config/config.env nodemon server.mjs",
+    "dev-node": "cross-env GENERATE_PEER_PORT='true' --env-file=./config/config.env nodemon server.mjs",
     "start-redis": "redis-server --daemonize yes"
   },
   "author": "Carl Klöfverskjöld",

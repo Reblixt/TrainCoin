@@ -44,10 +44,9 @@ export default class RedisServer {
     const msg = JSON.parse(message);
 
     if (channel === CHANNELS.BLOCKCHAIN) {
+      console.log("Received blockchain message");
       this.blockchain.replaceChain(msg, true, () => {
-        this.transactionPool.clearBlockchainTransactions({
-          chain: msg,
-        });
+        this.transactionPool.clearBlockTransactions({ chain: msg });
       });
     }
 

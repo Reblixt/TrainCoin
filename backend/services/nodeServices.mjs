@@ -1,5 +1,5 @@
 import { endpoint } from "../config/settings.mjs";
-import { blockchain } from "../server.mjs";
+import { blockchain, transactionPool } from "../server.mjs";
 
 export const synchronize = async (ROOT_NODE) => {
   let response = await fetch(`${ROOT_NODE}${endpoint.blockchain} `);

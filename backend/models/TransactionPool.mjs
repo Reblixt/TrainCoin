@@ -36,4 +36,8 @@ export default class TransactionPool {
       }
     }
   }
+
+  replaceTransactionMap(transactionMap) {
+    this.transactionMap = transactionMap;
+  }
 }

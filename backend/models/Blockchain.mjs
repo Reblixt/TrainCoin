@@ -1,3 +1,5 @@
+import { redisServer } from "../server.mjs";
+import { createHash } from "../utilities/crypto-lib.mjs";
 import Block from "./Block.mjs";
 import Transaction from "./Transaction.mjs";
 
@@ -18,10 +20,7 @@ export default class Blockchain {
       return;
     }
     if (!Blockchain.validateChain(chain)) return;
-    if (shouldValidate && !Blockchain.isValidChain(chain)) {
-      console.error("The incoming chain must be valid");
-      return;
-    }
+    if (shouldValidate && !this.validateTransactionData({ chain })) return;
 
     if (callBack) callBack();
     this.chain = chain;
@@ -58,7 +57,7 @@ export default class Blockchain {
     return true;
   }
 
-  static validateChain(chain) {
+  static validateChain({ chain }) {
     if (JSON.stringify(chain.at(0)) !== JSON.stringify(Block.genesis))
       return false;
 
