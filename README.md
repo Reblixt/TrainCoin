@@ -9,7 +9,7 @@
 3. Wallet model // done
 4. Blockchain model // done
 5. Transaction model // done
-6. TransactionPool model
+6. TransactionPool model // done
 7. Connect to peers thru Redis server.
 8. Block mining rewards
 9. Protect from double spending

@@ -1,4 +1,5 @@
 import express from "express";
+import morgan from "morgan";
 import Blockchain from "./models/Blockchain.mjs";
 import Wallet from "./models/Wallet.mjs";
 import walletRouter from "./routes/wallet-routes.mjs";
@@ -8,6 +9,13 @@ import { synchronize } from "./services/nodeServices.mjs";
 import { endpoint } from "./config/settings.mjs";
 import RedisServer from "./redisServer.mjs";
 import TransactionPool from "./models/TransactionPool.mjs";
+import { errorHandler } from "./middleware/errorHandler.mjs";
+
+import path from "path";
+import { fileURLToPath } from "url";
+import { connectDb } from "./config/mongo.mjs";
+
+connectDb();
 
 export const blockchain = new Blockchain();
 export const transactionPool = new TransactionPool();
@@ -18,7 +26,12 @@ export const redisServer = new RedisServer({
   wallet,
 });
 
+const fileName = fileURLToPath(import.meta.url);
+const dirname = path.dirname(fileName);
+global.__appdir = dirname;
+
 const app = express();
+app.use(morgan("dev"));
 app.use(express.json());
 
 const DEFAULT_PORT = 5001;
@@ -34,16 +47,23 @@ app.use(endpoint.wallet.base, walletRouter);
 app.use(endpoint.blockchain, blockchainRouter);
 app.use(endpoint.block.base, blockRouter);
 
+app.use(errorHandler);
+
 if (process.env.GENERATE_PEER_PORT === "true") {
   NODE_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
 }
 
 const PORT = NODE_PORT || DEFAULT_PORT;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 
   if (PORT !== DEFAULT_PORT) {
     synchronize(ROOT_NODE);
   }
+});
+
+process.on("unhandledRejection", (err, promise) => {
+  console.log(`Error: ${err.message}`);
+  server.close(() => process.exit(1));
 });

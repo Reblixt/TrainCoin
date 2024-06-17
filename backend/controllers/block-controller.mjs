@@ -1,3 +1,4 @@
+import ResponseModel from "../models/ResponseModel.mjs";
 import { blockchain, redisServer } from "../server.mjs";
 
 export const mineBlock = (req, res, next) => {
@@ -6,5 +7,5 @@ export const mineBlock = (req, res, next) => {
   const block = blockchain.addBlock({ data });
 
   redisServer.broadcast();
-  res.status(201).json({ success: true, statusCode: 201, data: block });
+  res.status(201).json(ResponseModel.post("", block));
 };

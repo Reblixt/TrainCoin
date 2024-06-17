@@ -11,7 +11,7 @@ export default class Miner {
   mineTransaction() {
     const validTransactions = this.transactionPool.validateTransactions();
     validTransactions.push(
-      Transaction.transactionReward({ miner: this.wallet }),
+      Transaction.transactionReward({ minerWallet: this.wallet }),
     );
     this.blockchain.addBlock({ data: validTransactions });
     this.redisServer.broadcast();
