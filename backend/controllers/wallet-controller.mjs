@@ -13,6 +13,10 @@ import { asyncHandler } from "../middleware/asyncHandler.mjs";
 // @access PUBLIC
 export const getWalletEndpoints = (req, res, next) => {
   res.status(200).json(ResponseModel.get("", endpoint.wallet));
+  const newWallet = new Wallet();
+  console.log("New Wallet", newWallet);
+  const publicKey = newWallet.publicKey;
+  console.log("Public Key", publicKey);
 };
 
 // @desc Skapa en ny transaction
@@ -78,7 +82,10 @@ export const mineTransaction = (req, res, next) => {
 // @access PUBLIC
 // TODO: Add New Wallet creatinon
 export const registerUserWallet = asyncHandler(async (req, res, next) => {
-  const { name, email, password, wallet, role } = req.body;
+  const { name, email, password, role } = req.body;
+
+  const newWallet = new Wallet().publicKey;
+  const wallet = JSON.stringify(newWallet);
 
   console.log("RegisterForm", name, email, password, wallet, role);
   const userWallet = await User.create({ name, email, password, wallet, role });

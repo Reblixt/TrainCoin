@@ -10,13 +10,16 @@
 4. Blockchain model // done
 5. Transaction model // done
 6. TransactionPool model // done
-7. Connect to peers thru Redis server.
-8. Block mining rewards
-9. Protect from double spending
-10. Write the chain in to a mongodb database
-11. For a consumer there will be a login function true API with JWT token.
-12. The consumers will be stored in a mongodb database.
-13. Register a new user.
+7. Connect to peers thru Redis server. // done
+8. Block mining rewards // done
+9. Protect from double spending // done
+10. Write the chain in to a mongodb database // done
+11. For a consumer there will be a login function true API with JWT token. // done
+12. The consumers will be stored in a mongodb database. // done
+13. Register a new user. // done
+
+#TODO: add protect at mine, transaction api.
+test it all then develop the frontend
 
 ### For the frontend part.
 

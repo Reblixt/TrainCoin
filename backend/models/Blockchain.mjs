@@ -1,3 +1,5 @@
+import { MINING_REWARD, REWARD_ADDRESS } from "../config/settings.mjs";
+import { isObjectEmpty } from "../services/nodeServices.mjs";
 import { createHash } from "../utilities/crypto-lib.mjs";
 import Block from "./Block.mjs";
 import Transaction from "./Transaction.mjs";
@@ -22,7 +24,7 @@ export default class Blockchain {
     if (shouldValidate && !this.validateTransactionData({ chain })) return;
 
     if (callBack) callBack();
-    this.chain = chain.chain;
+    this.chain = chain;
   }
 
   validateTransactionData({ chain }) {
@@ -32,21 +34,21 @@ export default class Blockchain {
       let counter = 0;
 
       console.log("block.data", block.data);
-      if ((block.data = {})) return false;
       for (let transaction of block.data) {
         if (transaction.inputMap.address === REWARD_ADDRESS.address) {
           counter++;
-
           if (counter > 1) return false;
 
           if (Object.values(transaction.outputMap)[0] !== MINING_REWARD)
             return false;
         } else {
           if (!Transaction.validate(transaction)) {
+            console.error("Invalid transaction");
             return false;
           }
 
           if (transactionSet.has(transaction)) {
+            console.error("An identical transaction appears more than once");
             return false;
           } else {
             transactionSet.add(transaction);
@@ -54,7 +56,6 @@ export default class Blockchain {
         }
       }
     }
-
     return true;
   }
 
@@ -69,9 +70,15 @@ export default class Blockchain {
       const currentLastHash = chain[i - 1].hash;
       const lastDifficulty = chain[i - 1].difficulty;
 
-      if (lastHash !== currentLastHash) return false;
+      if (lastHash !== currentLastHash) {
+        console.error("The lastHash must be the same");
+        return false;
+      }
 
-      if (Math.abs(lastDifficulty - difficulty) > 1) return false;
+      if (Math.abs(lastDifficulty - difficulty) > 1) {
+        console.log("The difficulty must only adjust by 1");
+        return false;
+      }
 
       const validHash = createHash(
         timestamp,
@@ -82,7 +89,7 @@ export default class Blockchain {
       );
       if (hash !== validHash) return false;
     }
-
+    console.log("validateChain return true");
     return true;
   }
 }

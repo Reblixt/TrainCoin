@@ -14,3 +14,7 @@ export const synchronize = async (ROOT_NODE) => {
     transactionPool.replaceTransactionMap(result.data);
   }
 };
+
+export const isObjectEmpty = (obj) => {
+  return Object.keys(obj).length === 0;
+};

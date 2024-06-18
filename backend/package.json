@@ -26,7 +26,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "dev": " npm run start-redis && nodemon --env-file=./config/config.env server.mjs",
-    "dev-node": "cross-env GENERATE_PEER_PORT='true' --env-file=./config/config.env nodemon server.mjs",
+    "dev-node": "cross-env GENERATE_PEER_PORT='true' nodemon --env-file=./config/config.env server.mjs",
     "start-redis": "redis-server --daemonize yes"
   },
   "author": "Carl Klöfverskjöld",

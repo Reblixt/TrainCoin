@@ -20,11 +20,15 @@ export default class Transaction {
       (total, amount) => total + amount,
     );
 
-    if (amount !== outputTotal) return false;
-
-    if (!verifySignature({ publicKey: address, data: outputMap, signature }))
+    if (amount !== outputTotal) {
+      console.error(`Invalid transaction from ${address}`);
       return false;
+    }
 
+    if (!verifySignature({ publicKey: address, data: outputMap, signature })) {
+      console.error(`Invalid signature from ${address}`);
+      return false;
+    }
     return true;
   }
 
