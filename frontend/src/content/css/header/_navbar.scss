@@ -1,0 +1,22 @@
+nav {
+  width: 100%;
+  background-color: $color-green;
+  height: 90px;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+    li {
+      a {
+        text-decoration: none;
+        color: $color-blue;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+  }
+}

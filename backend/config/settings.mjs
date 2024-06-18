@@ -35,7 +35,6 @@ export const endpoint = createEndpoint("/api/v1/", {
     balance: "/balance",
     publicKey: "/public-key",
     login: "/login",
-    logout: "/logout",
     createWallet: "/create-wallet",
   },
   block: {
@@ -46,6 +45,6 @@ export const endpoint = createEndpoint("/api/v1/", {
   blockchain: "blockchain",
 });
 
-// wallet will handle login, logout, authicaiton and registration, create transaction, get balance, get public key
+// wallet will handle login,  authicaiton and registration, create transaction, get balance, get public key
 // block will handle mine block and only get called by after a number of transactions
 // blockchain will handle get blockchain, get block by hash, get block by blocknumber

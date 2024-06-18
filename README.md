@@ -18,20 +18,19 @@
 12. The consumers will be stored in a mongodb database. // done
 13. Register a new user. // done
 
-#TODO: add protect at mine, transaction api.
-test it all then develop the frontend
-
 ### For the frontend part.
 
 1. The frontend will be a React app.
 2. Create new transactions.
 3. Login to the wallet.
 4. List transactions.
-5. List blocks.
+5. List block and blockchain.
 6. Create new block.
 7. Register a new user.
 
 ## For VG
+
+TODO: Add all the security packages
 
 1. TDD for the transactionhandling.
 2. Clean code, SOC, MVC.

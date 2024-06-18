@@ -80,16 +80,13 @@ export const mineTransaction = (req, res, next) => {
 // @desc Create a new User
 // @route POST /api/v1/wallet/register
 // @access PUBLIC
-// TODO: Add New Wallet creatinon
 export const registerUserWallet = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
 
   const newWallet = new Wallet().publicKey;
   const wallet = JSON.stringify(newWallet);
 
-  console.log("RegisterForm", name, email, password, wallet, role);
   const userWallet = await User.create({ name, email, password, wallet, role });
-  console.log("UserWallet", userWallet);
 
   createAndSendToken(userWallet, 200, res);
 });

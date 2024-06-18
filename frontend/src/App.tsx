@@ -1,11 +1,11 @@
-import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./Router";
+import "./App.scss";
 
 function App() {
   return (
     <>
-      <div>
-        <h1>Frontend for TrainCoin</h1>
-      </div>
+      <RouterProvider router={router} />
     </>
   );
 }
