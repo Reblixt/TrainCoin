@@ -94,7 +94,6 @@ export const registerUserWallet = asyncHandler(async (req, res, next) => {
 // @desc Login User
 // @route POST /api/v1/wallet/login
 // @access PUBLIC
-
 export const loginUserWallet = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 

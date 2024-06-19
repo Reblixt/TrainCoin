@@ -14,6 +14,7 @@ import { errorHandler } from "./middleware/errorHandler.mjs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { connectDb } from "./config/mongo.mjs";
+import { initializeSecurityServices } from "./services/securityServices.mjs";
 
 connectDb();
 
@@ -33,6 +34,8 @@ global.__appdir = dirname;
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
+
+initializeSecurityServices(app);
 
 const DEFAULT_PORT = 5001;
 const ROOT_NODE = `http://localhost:${DEFAULT_PORT}`;
@@ -55,11 +58,11 @@ if (process.env.GENERATE_PEER_PORT === "true") {
 
 const PORT = NODE_PORT || DEFAULT_PORT;
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
 
   if (PORT !== DEFAULT_PORT) {
-    synchronize(ROOT_NODE);
+    await synchronize(ROOT_NODE);
   }
 });
 

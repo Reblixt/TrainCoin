@@ -5,7 +5,7 @@ export const synchronize = async (ROOT_NODE) => {
   let response = await fetch(`${ROOT_NODE}${endpoint.blockchain} `);
   if (response.ok) {
     const result = await response.json();
-    blockchain.replaceChain(result.data);
+    blockchain.replaceChain(result.data.chain);
   }
 
   response = await fetch(`${ROOT_NODE}${endpoint.wallet.transactions}`);
@@ -13,8 +13,4 @@ export const synchronize = async (ROOT_NODE) => {
     const result = await response.json();
     transactionPool.replaceTransactionMap(result.data);
   }
-};
-
-export const isObjectEmpty = (obj) => {
-  return Object.keys(obj).length === 0;
 };

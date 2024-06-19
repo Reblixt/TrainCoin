@@ -1,7 +1,9 @@
+import mongoose from "mongoose";
 import { MINING_REWARD, REWARD_ADDRESS } from "../config/settings.mjs";
-import { isObjectEmpty } from "../services/nodeServices.mjs";
 import { createHash } from "../utilities/crypto-lib.mjs";
 import Block from "./Block.mjs";
+import Chain from "./BlockchainSchema.mjs";
+import ErrorResponse from "./ErrorResponseModel.mjs";
 import Transaction from "./Transaction.mjs";
 
 export default class Blockchain {
@@ -12,6 +14,7 @@ export default class Blockchain {
   addBlock({ data }) {
     const newBlock = Block.mineBlock({ lastBlock: this.chain.at(-1), data });
     this.chain.push(newBlock);
+    this.updateChainInDatabase(this.chain);
     return newBlock;
   }
 
@@ -92,4 +95,39 @@ export default class Blockchain {
     console.log("validateChain return true");
     return true;
   }
+
+  async updateChainInDatabase(newChain) {
+    try {
+      await Chain.deleteMany({});
+      const chainDoc = new Chain({ chain: newChain });
+      const result = await chainDoc.save();
+
+      console.log("Chain updated in the database", result._id);
+    } catch (error) {
+      throw new ErrorResponse(
+        "Error updating the chain in the database",
+        500,
+        error,
+      );
+    }
+  }
+
+  // async fetchChainFromDatabase() {
+  //   try {
+  //     const chainDoc = await Chain.findOne({});
+  //     if (!chainDoc) {
+  //       await this.updateChainInDatabase([Block.genesis]);
+  //     } else {
+  //       this.chain = chainDoc.chain;
+  //     }
+  //
+  //     console.log("Chain fetched from the database", chainDoc._id);
+  //   } catch (error) {
+  //     throw new ErrorResponse(
+  //       "Error fetching the chain from the database",
+  //       500,
+  //       error,
+  //     );
+  //   }
+  // }
 }

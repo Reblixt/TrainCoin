@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import crypto from "crypto";
+//import crypto from "crypto";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -58,16 +58,16 @@ userSchema.methods.generateToken = function () {
   });
 };
 
-userSchema.methods.createResetPasswordToken = function () {
-  const resetToken = crypto.randomBytes(20).toString("hex");
-  this.resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  this.resetPasswordTokenExpire = new Date(Date.now() + 10 * 60 * 1000);
-
-  return this.resetPasswordToken;
-};
+// userSchema.methods.createResetPasswordToken = function () {
+//   const resetToken = crypto.randomBytes(20).toString("hex");
+//   this.resetPasswordToken = crypto
+//     .createHash("sha256")
+//     .update(resetToken)
+//     .digest("hex");
+//
+//   this.resetPasswordTokenExpire = new Date(Date.now() + 10 * 60 * 1000);
+//
+//   return this.resetPasswordToken;
+// };
 
 export default mongoose.model("User", userSchema);
