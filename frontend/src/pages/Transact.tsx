@@ -3,7 +3,6 @@ import { sendTransactionRequest } from "../services/blockchainServices";
 import { ErrorModal } from "../components/ErrorModal";
 import { SuccessModal } from "../components/SuccessModal";
 import { MineButton } from "../components/MineButton";
-import { ListTransactions } from "../components/ListTransactions";
 
 export const Transact = () => {
   const [recipient, setRecipient] = useState<string>("");
@@ -111,7 +110,6 @@ export const Transact = () => {
             </div>
             <MineButton />
           </form>
-          <ListTransactions />
         </div>
       </div>
     </>

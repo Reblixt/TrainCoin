@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 function Transaction({ transaction }: any) {
   const { inputMap, outputMap } = transaction;
   const recipients = Object.keys(outputMap);

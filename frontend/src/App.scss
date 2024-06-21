@@ -50,8 +50,10 @@
 .blockT {
   border: solid 1px #fff;
   padding: 1rem;
-  background: #333;
+  background: $color-yellow;
   word-wrap: break-word;
+  margin: 1rem;
+  border-radius: 0.5rem;
 }
 .transaction-info {
   display: flex;
