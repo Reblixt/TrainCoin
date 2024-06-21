@@ -4,9 +4,7 @@ import { Navbar } from "../components/header/Navbar";
 export default function () {
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <Navbar />
       <main>
         <Outlet />
       </main>

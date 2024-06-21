@@ -23,6 +23,7 @@ export const getWalletEndpoints = (req, res, next) => {
 // @route POST /api/v1/wallet/transaction
 // @access PRIVATE (only wallet holder)
 export const addTransaction = (req, res, next) => {
+  console.log("jag är inne");
   const { recipient, amount } = req.body;
 
   let transaction = transactionPool.transactionExists({

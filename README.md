@@ -1,5 +1,7 @@
 # TrainCoin - a Blockchain deticated to training and education
 
+# Make sure to have Redis server installed before start the backend node.
+
 ## What must be included in the project
 
 ### For the backend part.
@@ -20,17 +22,15 @@
 
 ### For the frontend part.
 
-1. The frontend will be a React app.
-2. Create new transactions.
-3. Login to the wallet.
-4. List transactions.
-5. List block and blockchain.
-6. Create new block.
-7. Register a new user.
+1. The frontend will be a React app. // done
+2. Create new transactions. // done
+3. Login to the wallet. // done
+4. List transactions. // done
+5. List block and blockchain. // done
+6. Create new block. //done
+7. Register a new user. // done
 
 ## For VG
-
-TODO: Add all the security packages
 
 1. TDD for the transactionhandling.
 2. Clean code, SOC, MVC.
