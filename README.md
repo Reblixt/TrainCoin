@@ -85,6 +85,11 @@ This project provides a set of API endpoints for managing a wallet and interacti
    ```sh
    npm run dev
    ```
+5. Start additional nodes
+
+```sh
+ npm run dev-node
+```
 
 ## Testing the Application
 
